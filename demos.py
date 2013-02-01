@@ -62,7 +62,7 @@ def sunspots():
 def stars():
      from pylab import scatter,xlabel,ylabel,xlim,ylim,show
      from numpy import loadtxt
-     data = loadtxt("stars.txt",float)
+     data = loadtxt("stars.dat",float)
      x = data[:,0]
      y = data[:,1]
      scatter(x,y)
