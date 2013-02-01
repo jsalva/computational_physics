@@ -32,4 +32,22 @@ def iterative_sin_plot():
      plot(xpoints,ypoints)
      show()
 
+def moving_average(arr, window):
+     from numpy import NaN,array,hstack
+     moving_avg = array([])
+     for i = range(window):
+          moving_avg = hstack([moving_average, NaN])
+     for i = range(window,len(arr)):
+          
 
+
+def sunspots():
+     from pylab import show,plot
+     from numpy import genfromtxt
+     sun_spot_data = genfromtxt('sunspots.dat')
+     month = sun_spot_data[:,0]
+     num_spots = sun_spot_data[:,1]
+     
+     plot(month,num_spots,'ko')
+     plot(month,running_average,'k--')
+     show()
