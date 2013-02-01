@@ -32,13 +32,19 @@ def iterative_sin_plot():
      plot(xpoints,ypoints)
      show()
 
-def moving_average(arr, window):
-     from numpy import NaN,array,hstack
-     moving_avg = array([])
-     for i = range(window):
-          moving_avg = hstack([moving_average, NaN])
-     for i = range(window,len(arr)):
-          
+def running_average(arr, window_radius):
+     from numpy import NaN,array,hstack,squeeze,average
+     arr = squeeze(array(arr))
+     running_avg_arr = array([])
+     
+     for i in range(window_radius):
+          running_avg_arr = hstack([running_avg_arr, NaN])
+     for i in range(window_radius,len(arr)):
+          running_avg = average(arr[i-window_radius:i+window_radius+1])
+          running_avg_arr = hstack([running_avg_arr,running_avg])
+     for i in range(window_radius):
+          running_avg_arr[-(i+1)] = NaN
+     return running_avg_arr
 
 
 def sunspots():
@@ -47,7 +53,22 @@ def sunspots():
      sun_spot_data = genfromtxt('sunspots.dat')
      month = sun_spot_data[:,0]
      num_spots = sun_spot_data[:,1]
+     running_avg = running_average(num_spots,5) 
      
-     plot(month,num_spots,'ko')
-     plot(month,running_average,'k--')
+     plot(month,num_spots,'k.')
+     plot(month,running_avg,'k--')
      show()
+
+def stars():
+     from pylab import scatter,xlabel,ylabel,xlim,ylim,show
+     from numpy import loadtxt
+     data = loadtxt("stars.txt",float)
+     x = data[:,0]
+     y = data[:,1]
+     scatter(x,y)
+     xlabel("Temperature")
+     ylabel("Magnitude")
+     xlim(0,13000)
+     ylim(-5,20)
+     show()
+
