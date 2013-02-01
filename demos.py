@@ -61,7 +61,7 @@ def sunspots():
 
 def stars():
      from pylab import scatter,xlabel,ylabel,xlim,ylim,show
-     from numpy import loadtxt
+     from numpy import loadtxt,log
      data = loadtxt("stars.dat",float)
      x = data[:,0]
      y = data[:,1]
@@ -71,4 +71,13 @@ def stars():
      xlim(0,13000)
      ylim(-5,20)
      show()
+
+def circular_density():
+     from pylab import imshow,show,gray,xlim,ylim
+     from numpy import loadtxt,pi
+     data = loadtxt("circular.dat",float)
+     imshow(data,origin="lower",extent=[0,pi,0,pi])
+     gray()
+     show()
+
 
