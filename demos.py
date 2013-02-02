@@ -136,3 +136,6 @@ def stm():
     imshow(stm_data)
     gray()
     show()
+
+def sphere():
+
