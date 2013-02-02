@@ -89,7 +89,6 @@ def wave_function(vec1,vec2,separation_cm):
      from math import sqrt,sin,pi
      from numpy import empty
      from pylab import imshow,gray,show
-
      amp1 = vec1[0]
      wavelength1 = vec1[1]
      k1 = 2*pi/wavelength1
@@ -99,12 +98,10 @@ def wave_function(vec1,vec2,separation_cm):
      side_cm = 100.0
      points = 500
      spacing = side_cm/points
-
      x1 = side_cm/2 - separation_cm/2
      y1 = side_cm/2
      x2 = side_cm/2 + separation_cm/2
      y2 = side_cm/2
-
      xi = empty([points,points],float)
      for i in range(points):
           y = spacing*i
@@ -113,11 +110,10 @@ def wave_function(vec1,vec2,separation_cm):
                r1 = sqrt((x-x1)**2+(y-y1)**2)
                r2 = sqrt((x-x2)**2+(y-y2)**2)
                xi[i,j] = amp1*sin(k1*r1)+amp2*sin(k2*r2)
-     
      imshow(xi,origin='lower',extent=[0,side_cm,0,side_cm])
      gray()
      show()
-     
-     
+
+          
      
 
