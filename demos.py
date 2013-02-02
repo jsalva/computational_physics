@@ -64,7 +64,7 @@ def sunspots():
 
 def stars():
     from pylab import scatter,xlabel,ylabel,xlim,ylim,show
-    from numpy import loadtxt,log
+    from numpy import loadtxt
 
     data = loadtxt("stars.dat",float)
     x = data[:,0]
@@ -98,7 +98,7 @@ def wave_function(wave_vector,steps):
     from images2gif import writeGif
 
     side_cm = 100.
-    points = 200
+    points = 1000
     spacing = side_cm/points
     wave_vector = wave_vector.astype('float64')
     image_stack = []
@@ -127,3 +127,12 @@ def wave_function(wave_vector,steps):
         image_stack.append(simple_normalize(xi))
     
     writeGif('interference.gif',image_stack,duration=0.1,dither=0)
+
+def stm():
+    from pylab import imshow,gray,show
+    from numpy import loadtxt
+
+    stm_data = loadtxt('stm.dat')
+    imshow(stm_data)
+    gray()
+    show()
