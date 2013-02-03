@@ -199,3 +199,5 @@ def face_centered(atom1_r,atom2_r,side):
                 sphere(pos=big_spacing + big_spacing*array([x,y,z]),
                     radius=atom2_r if atom1_big else atom1_r,
                     color=atom2_color if atom1_big else atom2_color)
+
+

@@ -167,7 +167,13 @@ def sodium_chloride(side):
                 sphere(pos=2*spacing*array([x,y,z]),
                     radius=sodium_r if sodium_big else chloride_r,
                     color=sodium_color if sodium_big else chloride_color)
-                sphere(pos=spacing+2*spacing*array([x,y,z]),
+                sphere(pos=2*spacing*array([x+.5,y,z]),
+                    radius=chloride_r if sodium_big else sodium_r,
+                    color=chloride_color if sodium_big else chloride_color)
+                sphere(pos=2*spacing*array([x,y+.5,z]),
+                    radius=chloride_r if sodium_big else sodium_r,
+                    color=chloride_color if sodium_big else chloride_color)
+                sphere(pos=2*spacing*array([x,y,z+.5]),
                     radius=chloride_r if sodium_big else sodium_r,
                     color=chloride_color if sodium_big else chloride_color)
 
