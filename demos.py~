@@ -138,4 +138,58 @@ def stm():
     show()
 
 def sphere():
+    from visual import sphere,color
+    L = 5
+    R = 0.3
+    for i in range(-L,L+1):
+        for j in range(-L,L+1):
+            for k in range(-L,L+1):
+                sphere(pos=[i,j,k],radius=R,color=color.blue)
 
+def sodium_chloride(side):
+    from visual import sphere,color
+    from numpy import sqrt,array
+
+    sodium_r = 190
+    chloride_r = 79
+    rbigger = max(sodium_r,chloride_r)
+    rsmaller = min(sodium_r,chloride_r)
+    sodium_big = sodium_r == rbigger
+
+    spacing = (rsmaller+rbigger)
+
+    sodium_color = color.red
+    chloride_color = color.green
+
+    for x in range(side):
+        for y in range(side):
+            for z in range(side):
+                sphere(pos=2*spacing*array([x,y,z]),
+                    radius=sodium_r if sodium_big else chloride_r,
+                    color=sodium_color if sodium_big else chloride_color)
+                sphere(pos=spacing+2*spacing*array([x,y,z]),
+                    radius=chloride_r if sodium_big else sodium_r,
+                    color=chloride_color if sodium_big else chloride_color)
+
+def face_centered(atom1_r,atom2_r,side):
+    from visual import sphere,color
+    from numpy import sqrt,array
+
+    rbigger = max(atom1_r,atom2_r)
+    atom1_big = atom1_r == rbigger
+
+    big_spacing = max(2.*rbigger,sqrt(2.*(atom1_r+atom2_r)**2))
+    small_spacing = 0.5*big_spacing
+
+    atom1_color = color.red
+    atom2_color = color.green
+
+    for x in range(side):
+        for y in range(side):
+            for z in range(side):
+                sphere(pos=small_spacing + big_spacing*array([x,y,z]),
+                    radius=atom1_r if atom1_big else atom2_r,
+                    color=atom1_color if atom1_big else atom2_color)
+                sphere(pos=big_spacing + big_spacing*array([x,y,z]),
+                    radius=atom2_r if atom1_big else atom1_r,
+                    color=atom2_color if atom1_big else atom2_color)
